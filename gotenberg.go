@@ -243,3 +243,49 @@ func (r *Request) Metadata(key, value string) *Request {
 	r.Meta[key] = value
 	return r
 }
+
+// UserPassword sets the password required to open the PDF.
+func (r *Request) UserPassword(password string) *Request {
+	return r.Param("userPassword", password)
+}
+
+// OwnerPassword sets the password required to change permissions or edit the PDF.
+func (r *Request) OwnerPassword(password string) *Request {
+	return r.Param("ownerPassword", password)
+}
+
+// AllowPrinting permits printing the document.
+func (r *Request) AllowPrinting(allow bool) *Request {
+	return r.Bool("allowPrinting", allow)
+}
+
+// AllowCopying permits extracting text and graphics.
+func (r *Request) AllowCopying(allow bool) *Request {
+	return r.Bool("allowCopying", allow)
+}
+
+// AllowModifying permits changing the document content.
+func (r *Request) AllowModifying(allow bool) *Request {
+	return r.Bool("allowModifying", allow)
+}
+
+// AllowAnnotating permits adding or modifying annotations.
+func (r *Request) AllowAnnotating(allow bool) *Request {
+	return r.Bool("allowAnnotating", allow)
+}
+
+// AllowFillingForms permits filling in form fields.
+func (r *Request) AllowFillingForms(allow bool) *Request {
+	return r.Bool("allowFillingForms", allow)
+}
+
+// AllowAssembling permits inserting, deleting, and rotating pages.
+func (r *Request) AllowAssembling(allow bool) *Request {
+	return r.Bool("allowAssembling", allow)
+}
+
+// Embeds adds a file to be embedded in the resulting PDF.
+func (r *Request) Embeds(filename string, content io.Reader) *Request {
+	return r.file("embeds", filename, content)
+}
+

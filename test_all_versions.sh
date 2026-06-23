@@ -15,6 +15,7 @@ VERSIONS=(
     "8.31.0"
     "8.32.0"
     "8.33.0"
+    "8.34.0"
 )
 
 echo "=== Gotenberg Client Version Test Suite ==="

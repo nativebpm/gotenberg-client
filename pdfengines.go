@@ -214,13 +214,13 @@ func (r *PDFEngines) AutoIndexBookmarks(v bool) *PDFEngines {
 
 // WatermarkFile adds a watermark source file (image or PDF) to the request.
 func (r *PDFEngines) WatermarkFile(filename string, content io.Reader) *PDFEngines {
-	r.Request.file("watermark", filename, content)
+	r.file("watermark", filename, content)
 	return r
 }
 
 // StampFile adds a stamp source file (image or PDF) to the request.
 func (r *PDFEngines) StampFile(filename string, content io.Reader) *PDFEngines {
-	r.Request.file("stamp", filename, content)
+	r.file("stamp", filename, content)
 	return r
 }
 
@@ -228,3 +228,91 @@ func (r *PDFEngines) StampFile(filename string, content io.Reader) *PDFEngines {
 func (r *PDFEngines) EmbedsMetadata(metadataJSON string) *PDFEngines {
 	return r.Param("embedsMetadata", metadataJSON)
 }
+
+// Embed creates a request to embed files into a PDF.
+func (r *PDFEngines) Embed(ctx context.Context) *PDFEngines {
+	r.Req = r.HttpStream.Multipart(ctx, "/forms/pdfengines/embed")
+	return r
+}
+
+// FacturX creates a request to generate a Factur-X / ZUGFeRD e-invoice.
+func (r *PDFEngines) FacturX(ctx context.Context) *PDFEngines {
+	r.Req = r.HttpStream.Multipart(ctx, "/forms/pdfengines/factur-x")
+	return r
+}
+
+// FacturXXml adds the CII invoice XML file.
+func (r *PDFEngines) FacturXXml(filename string, content io.Reader) *PDFEngines {
+	r.file("facturxXml", filename, content)
+	return r
+}
+
+// FacturXConformanceLevel sets the conformance level recorded in XMP metadata.
+func (r *PDFEngines) FacturXConformanceLevel(level string) *PDFEngines {
+	return r.Param("facturxConformanceLevel", level)
+}
+
+// FacturXDocumentType sets the document type.
+func (r *PDFEngines) FacturXDocumentType(docType string) *PDFEngines {
+	return r.Param("facturxDocumentType", docType)
+}
+
+// FacturXVersion sets the version recorded in XMP metadata.
+func (r *PDFEngines) FacturXVersion(version string) *PDFEngines {
+	return r.Param("facturxVersion", version)
+}
+
+// UserPassword sets the password required to open the PDF.
+func (r *PDFEngines) UserPassword(password string) *PDFEngines {
+	r.Request.UserPassword(password)
+	return r
+}
+
+// OwnerPassword sets the password required to change permissions or edit the PDF.
+func (r *PDFEngines) OwnerPassword(password string) *PDFEngines {
+	r.Request.OwnerPassword(password)
+	return r
+}
+
+// AllowPrinting permits printing the document.
+func (r *PDFEngines) AllowPrinting(allow bool) *PDFEngines {
+	r.Request.AllowPrinting(allow)
+	return r
+}
+
+// AllowCopying permits extracting text and graphics.
+func (r *PDFEngines) AllowCopying(allow bool) *PDFEngines {
+	r.Request.AllowCopying(allow)
+	return r
+}
+
+// AllowModifying permits changing the document content.
+func (r *PDFEngines) AllowModifying(allow bool) *PDFEngines {
+	r.Request.AllowModifying(allow)
+	return r
+}
+
+// AllowAnnotating permits adding or modifying annotations.
+func (r *PDFEngines) AllowAnnotating(allow bool) *PDFEngines {
+	r.Request.AllowAnnotating(allow)
+	return r
+}
+
+// AllowFillingForms permits filling in form fields.
+func (r *PDFEngines) AllowFillingForms(allow bool) *PDFEngines {
+	r.Request.AllowFillingForms(allow)
+	return r
+}
+
+// AllowAssembling permits inserting, deleting, and rotating pages.
+func (r *PDFEngines) AllowAssembling(allow bool) *PDFEngines {
+	r.Request.AllowAssembling(allow)
+	return r
+}
+
+// Embeds adds a file to be embedded in the resulting PDF.
+func (r *PDFEngines) Embeds(filename string, content io.Reader) *PDFEngines {
+	r.Request.Embeds(filename, content)
+	return r
+}
+

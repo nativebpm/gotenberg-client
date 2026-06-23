@@ -361,3 +361,58 @@ func (r *LibreOffice) EmbedsMetadata(metadataJSON string) *LibreOffice {
 func (r *LibreOffice) Flatten(flatten bool) *LibreOffice {
 	return r.Bool("flatten", flatten)
 }
+
+// UserPassword sets the password required to open the PDF.
+func (r *LibreOffice) UserPassword(password string) *LibreOffice {
+	r.Request.UserPassword(password)
+	return r
+}
+
+// OwnerPassword sets the password required to change permissions or edit the PDF.
+func (r *LibreOffice) OwnerPassword(password string) *LibreOffice {
+	r.Request.OwnerPassword(password)
+	return r
+}
+
+// AllowPrinting permits printing the document.
+func (r *LibreOffice) AllowPrinting(allow bool) *LibreOffice {
+	r.Request.AllowPrinting(allow)
+	return r
+}
+
+// AllowCopying permits extracting text and graphics.
+func (r *LibreOffice) AllowCopying(allow bool) *LibreOffice {
+	r.Request.AllowCopying(allow)
+	return r
+}
+
+// AllowModifying permits changing the document content.
+func (r *LibreOffice) AllowModifying(allow bool) *LibreOffice {
+	r.Request.AllowModifying(allow)
+	return r
+}
+
+// AllowAnnotating permits adding or modifying annotations.
+func (r *LibreOffice) AllowAnnotating(allow bool) *LibreOffice {
+	r.Request.AllowAnnotating(allow)
+	return r
+}
+
+// AllowFillingForms permits filling in form fields.
+func (r *LibreOffice) AllowFillingForms(allow bool) *LibreOffice {
+	r.Request.AllowFillingForms(allow)
+	return r
+}
+
+// AllowAssembling permits inserting, deleting, and rotating pages.
+func (r *LibreOffice) AllowAssembling(allow bool) *LibreOffice {
+	r.Request.AllowAssembling(allow)
+	return r
+}
+
+// Embeds adds a file to be embedded in the resulting PDF.
+func (r *LibreOffice) Embeds(filename string, content io.Reader) *LibreOffice {
+	r.Request.Embeds(filename, content)
+	return r
+}
+

@@ -307,3 +307,58 @@ func (r *Chromium) EmbedsMetadata(metadataJSON string) *Chromium {
 func (r *Chromium) ScreenshotDeviceScaleFactor(factor float64) *Chromium {
 	return r.Float("deviceScaleFactor", factor)
 }
+
+// UserPassword sets the password required to open the PDF.
+func (r *Chromium) UserPassword(password string) *Chromium {
+	r.Request.UserPassword(password)
+	return r
+}
+
+// OwnerPassword sets the password required to change permissions or edit the PDF.
+func (r *Chromium) OwnerPassword(password string) *Chromium {
+	r.Request.OwnerPassword(password)
+	return r
+}
+
+// AllowPrinting permits printing the document.
+func (r *Chromium) AllowPrinting(allow bool) *Chromium {
+	r.Request.AllowPrinting(allow)
+	return r
+}
+
+// AllowCopying permits extracting text and graphics.
+func (r *Chromium) AllowCopying(allow bool) *Chromium {
+	r.Request.AllowCopying(allow)
+	return r
+}
+
+// AllowModifying permits changing the document content.
+func (r *Chromium) AllowModifying(allow bool) *Chromium {
+	r.Request.AllowModifying(allow)
+	return r
+}
+
+// AllowAnnotating permits adding or modifying annotations.
+func (r *Chromium) AllowAnnotating(allow bool) *Chromium {
+	r.Request.AllowAnnotating(allow)
+	return r
+}
+
+// AllowFillingForms permits filling in form fields.
+func (r *Chromium) AllowFillingForms(allow bool) *Chromium {
+	r.Request.AllowFillingForms(allow)
+	return r
+}
+
+// AllowAssembling permits inserting, deleting, and rotating pages.
+func (r *Chromium) AllowAssembling(allow bool) *Chromium {
+	r.Request.AllowAssembling(allow)
+	return r
+}
+
+// Embeds adds a file to be embedded in the resulting PDF.
+func (r *Chromium) Embeds(filename string, content io.Reader) *Chromium {
+	r.Request.Embeds(filename, content)
+	return r
+}
+
